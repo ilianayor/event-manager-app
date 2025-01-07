@@ -7,6 +7,7 @@ defineProps({
     required: true
   }
 });
+
 defineEmits(['delete-event']);
 </script>
 
@@ -37,14 +38,12 @@ defineEmits(['delete-event']);
           {{ event.location }}
         </div>
         <div class="flex flex-col gap-3">
-        <button class="h-[36px] bg-black hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-center text-sm"
-        >
+        <button class="h-[36px] bg-black hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-center text-sm">
           Научи повече
         </button>
         <button
             @click="$emit('delete-event', event.id)"
-            class="h-[36px] bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-center text-sm"
-          >
+            class="h-[36px] bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-center text-sm">
             Изтрий
           </button>
           </div>

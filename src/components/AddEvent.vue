@@ -108,15 +108,13 @@ const closeModal = () => {
       />
       <button
         type="submit"
-        class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-700"
-      >
+        class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-700">
         Добави
       </button>
     </form>
     <button
       @click="closeModal"
-      class="w-full bg-gray-500 text-white py-2 rounded-lg mt-4 hover:bg-gray-700"
-    >
+      class="w-full bg-gray-500 text-white py-2 rounded-lg mt-4 hover:bg-gray-700">
       Затвори
     </button>
   </div>

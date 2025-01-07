@@ -37,15 +37,13 @@ const deleteEvent = (eventId) => {
   <div class="flex justify-center space-x-4 my-6">
     <button
       @click="showAddEventForm = !showAddEventForm; showFilterForm = false"
-      class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-700"
-    >
+      class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-700">
       Добави събитие
     </button>
 
     <button
       @click="showFilterForm = !showFilterForm; showAddEventForm = false"
-      class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-700"
-    >
+      class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-700">
       Филтър
     </button>
   </div>

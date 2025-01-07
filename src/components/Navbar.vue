@@ -11,18 +11,12 @@ import logo from '@/assets/img/eventic-logo.png'
         >
           <!-- Logo -->
           <a class="flex flex-shrink-0 items-center mr-4" href="/">
-            <img 
-              class="h-40 w-auto md:h-48 lg:h-56" 
-              :src="logo" 
-              alt="Eventic - актуални събития в София" 
-            />
+            <img class="h-40 w-auto md:h-48 lg:h-56" :src="logo" 
+              alt="Eventic - актуални събития в София"/>
           </a>
           <div class="md:ml-auto flex items-center">
             <div class="flex space-x-2">
-              <a
-                href="/"
-                class="text-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >НАЧАЛО</a>
+              <a href="/" class="text-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">НАЧАЛО</a>
             </div>
           </div>
         </div>
