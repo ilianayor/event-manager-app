@@ -12,6 +12,7 @@ npm install
 ```
 
 ### Run Vite Frontend
+Vue will run on http://localhost:3000
 
 ```sh
 npm run dev
