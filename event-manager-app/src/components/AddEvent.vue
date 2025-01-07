@@ -1,8 +1,7 @@
 <script setup>
-import { ref } from 'vue';
-import { defineEmits } from 'vue';
+import { ref, defineEmits } from 'vue';
 
-const emit = defineEmits(['add-event']);
+const emit = defineEmits(['add-event', 'close-modal']);
 
 const newEvent = ref({
   title: '',
@@ -13,6 +12,17 @@ const newEvent = ref({
   time: '',
   location: '',
 });
+
+// Define possible categories
+const categories = ref([
+  'Концерт',
+  'Кулинарно събитие',
+  'Изложба',
+  'Театър',
+  'Фестивал',
+  'Спортно събитие',
+  'Конференция'
+]);
 
 const handleSubmit = () => {
   if (
@@ -42,10 +52,14 @@ const resetForm = () => {
     location: '',
   };
 };
+
+const closeModal = () => {
+  emit('close-modal');
+};
 </script>
 
 <template>
-  <div class="bg-[#F0E1D1] p-6 rounded-xl shadow-md mb-6">
+  <div class="w-full max-w-4xl mx-auto p-6">
     <h2 class="text-xl font-bold mb-4">Добави ново събитие</h2>
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <input
@@ -60,12 +74,18 @@ const resetForm = () => {
         placeholder="URL адрес на изображение"
         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
       />
-      <input
+      
+      <!-- Category Dropdown -->
+      <select
         v-model="newEvent.category"
-        type="text"
-        placeholder="Категория"
         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-      />
+      >
+        <option value="" disabled>Изберете категория</option>
+        <option v-for="category in categories" :key="category" :value="category">
+          {{ category }}
+        </option>
+      </select>
+      
       <textarea
         v-model="newEvent.description"
         placeholder="Описание"
@@ -85,7 +105,7 @@ const resetForm = () => {
       <input
         v-model="newEvent.location"
         type="text"
-        placeholder="Място"
+        placeholder="Локация"
         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
       />
       <button
@@ -95,5 +115,12 @@ const resetForm = () => {
         Добави
       </button>
     </form>
+    <button
+      @click="closeModal"
+      class="w-full bg-gray-500 text-white py-2 rounded-lg mt-4 hover:bg-gray-700"
+    >
+      Затвори
+    </button>
   </div>
 </template>
+

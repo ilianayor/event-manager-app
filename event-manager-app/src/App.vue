@@ -9,7 +9,8 @@ import { ref, computed } from 'vue';
 
 const events = ref(eventInfo);
 const filter = ref('');
-const showAddEventForm = ref(false);
+const showAddEventForm = ref(false);  // For controlling the modal visibility
+const showFilterForm = ref(false);
 
 const filteredEvents = computed(() =>
   events.value.filter(
@@ -20,28 +21,51 @@ const filteredEvents = computed(() =>
 );
 
 const addNewEvent = (newEvent) => {
-  events.value.push(newEvent);
-  showAddEventForm.value = false;
+  // Add new event to the start of the array using unshift
+  events.value.unshift(newEvent);
+  showAddEventForm.value = false;  // Close the modal when the event is added
 };
 
 const deleteEvent = (eventId) => {
   events.value = events.value.filter((event) => event.id !== eventId);
 };
-
 </script>
 
 <template>
   <Navbar />
   <HeaderComponent />
-  <EventFilter v-model="filter" />
-  <div class="text-center my-6">
+
+  <!-- Container for both buttons side by side, centered -->
+  <div class="flex justify-center space-x-4 my-6">
+    <!-- Add Event Button -->
     <button
-      @click="showAddEventForm = !showAddEventForm"
+      @click="showAddEventForm = !showAddEventForm; showFilterForm = false"
       class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-700"
     >
       Добави събитие
     </button>
+
+    <!-- Filter Button -->
+    <button
+      @click="showFilterForm = !showFilterForm; showAddEventForm = false"
+      class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-700"
+    >
+      Филтър
+    </button>
   </div>
-  <AddEvent v-if="showAddEventForm" @add-event="addNewEvent" />
+
+  <!-- Modal to Add Event -->
+  <div v-if="showAddEventForm" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg w-full sm:w-1/2" @click.stop>
+      <AddEvent @add-event="addNewEvent" @close-modal="showAddEventForm = false" />
+    </div>
+  </div>
+
+  <!-- Show the Event Filter if showFilterForm is true -->
+  <div v-if="showFilterForm">
+    <EventFilter v-model="filter" />
+  </div>
+
+  <!-- Event List -->
   <EventList :events="filteredEvents" @delete-event="deleteEvent"/>
 </template>
