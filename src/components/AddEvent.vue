@@ -55,6 +55,7 @@ const resetForm = () => {
 const closeModal = () => {
   emit('close-modal');
 };
+
 </script>
 
 <template>
@@ -65,6 +66,7 @@ const closeModal = () => {
         v-model="newEvent.title"
         type="text"
         placeholder="Име"
+        maxlength = "80"
         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
       />
       <input
@@ -76,7 +78,7 @@ const closeModal = () => {
       
       <select
         v-model="newEvent.category"
-        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+        class="w-full p-3 h-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
       >
         <option value="" disabled>Изберете категория</option>
         <option v-for="category in categories" :key="category" :value="category">
@@ -88,6 +90,7 @@ const closeModal = () => {
         v-model="newEvent.description"
         placeholder="Описание"
         rows="3"
+        maxlength = "300"
         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
       ></textarea>
       <input
@@ -104,6 +107,7 @@ const closeModal = () => {
         v-model="newEvent.location"
         type="text"
         placeholder="Локация"
+        maxlength = "60"
         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
       />
       <button
